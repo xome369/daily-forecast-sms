@@ -169,7 +169,7 @@ def build_forecast_message(forecast_data: dict[str, Any]) -> str:
         conditions_main = {w["main"] for w in step["weather"]}
         conditions_display = ", ".join(w["description"] for w in step["weather"]).capitalize()
         temp = round(step["main"]["temp"])
-        time_str = datetime.fromtimestamp(step["dt"], tz=local_tz).strftime("%#I%p").lower() # '%-I' for linux and macOS, '%#I' for windows
+        time_str = datetime.fromtimestamp(step["dt"], tz=local_tz).strftime("%-I%p").lower() # '%#I' for windows
 
         temp_shifted = prev_temp is not None and abs(temp - prev_temp) >= TEMP_CHANGE_THRESHOLD
 
